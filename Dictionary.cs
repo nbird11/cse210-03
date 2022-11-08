@@ -11,7 +11,7 @@ namespace CSE210_03{
             "stomp",
             "alter",
             "something",
-            "rythym"
+            "rhythm"
         };
         private Random random = new Random();
         private string currentWord = "";
@@ -19,7 +19,7 @@ namespace CSE210_03{
             return currentWord;
         }
         public void getRandomWord(){
-            currentWord = words[random.Next(words.Count())];
+            currentWord = words[random.Next(words.Count)];
         }
         public Dictionary(){
             getRandomWord();           
