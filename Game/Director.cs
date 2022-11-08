@@ -21,6 +21,7 @@ namespace Game
         {
             do
             {
+                // _parachute.getParachute();
                 
             } while (_isPlaying);
         }
