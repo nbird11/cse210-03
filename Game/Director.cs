@@ -7,6 +7,9 @@ namespace Game
     public class Director
     {
         // Attributes
+        private bool _isPlaying = true;
+        private Parachute _parachute = new Parachute();
+        private TerminalService _terminal = new TerminalService();
 
         // Constructor
         public Director()
@@ -16,7 +19,10 @@ namespace Game
         // Game loop
         public void startGame()
         {
-            
+            do
+            {
+                
+            } while (_isPlaying);
         }
     }
 }
