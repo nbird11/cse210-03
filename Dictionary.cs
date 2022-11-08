@@ -11,7 +11,15 @@ namespace CSE210_03{
             "stomp",
             "alter",
             "something",
-            "rhythm"
+            "rhythm",
+            "infinite",
+            "deprive",
+            "relax",
+            "breakdown",
+            "represent",
+            "critical",
+            "sunrise",
+            "president"
         };
         private Random random = new Random();
         private string currentWord = "";
