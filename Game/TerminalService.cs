@@ -19,7 +19,7 @@ namespace Game
         public char ReadInput(string prompt = "Guess a letter [a-z]: ")
         {
             Console.Write(prompt);
-            char input = Console.ReadLine();
+            char input = Convert.ToChar(Console.ReadLine());
             return input;
         }
 
