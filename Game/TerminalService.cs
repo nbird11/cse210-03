@@ -16,10 +16,10 @@ namespace Game
         }
 
         /// method
-        public string ReadInput(string prompt = "Guess a letter [a-z]: ")
+        public char ReadInput(string prompt = "Guess a letter [a-z]: ")
         {
             Console.Write(prompt);
-            string input = Console.ReadLine();
+            char input = Console.ReadLine();
             return input;
         }
 
