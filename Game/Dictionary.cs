@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSE210_03{
+namespace Game{
     // Dictionary will keep track of words and get a random word for the secret word.
     public class Dictionary{
         // Attributes
@@ -27,15 +27,18 @@ namespace CSE210_03{
         private string currentWord = "";
 
         // Constructor
-        public Dictionary(){
+        public Dictionary()
+        {
             getRandomWord();           
         }
 
         // Methods
-        public string getWord(){
+        public string getWord()
+        {
             return currentWord;
         }
-        public void getRandomWord(){
+        public void getRandomWord()
+        {
             currentWord = words[random.Next(words.Count)];
         }
 
