@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CSE210_03
+namespace Game
 {
     /// Parachute
     public class Parachute
