@@ -8,40 +8,33 @@ namespace Game
     /// will include prints and receive inputs.
     public class TerminalService 
     {
+        /// attributes
+
         /// constuctor to build the object
         public TerminalService()
         {
-
-
         }
-        /// attributes
-
 
         /// method
-            public string ReadInput(string prompt = "Input guess")
+        public string ReadInput(string prompt = "Guess a letter [a-z]: ")
+        {
+            Console.Write(prompt);
+            string input = Console.ReadLine();
+            return input;
+        }
+
+
+        public void PrintString(string output)
+        {
+            Console.WriteLine(output);
+        }
+
+        public void PrintList(List<string> outputs)
+        {
+            foreach (string item in outputs)
             {
-                Console.Write(prompt);
-                string input = Console.ReadLine();
-                return input;
+                PrintString(item);
             }
-
-
-            public void PrintString(string output)
-
-            {
-                Console.WriteLine(output);
-
-            }
-
-            public void PrintList(List <string> outputs )
-            {
-                foreach (string item in outputs)
-                {
-                    PrintString(item);
-                }
-    
-            }
-
-        
+        }
     }
 }
