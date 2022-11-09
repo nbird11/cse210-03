@@ -18,7 +18,7 @@ namespace Game
 
 
         /// method
-            public string ReadInput(string prompt = "Input guess")
+            public char ReadInput(string prompt = "Input guess")
             {
                 Console.Write(prompt);
                 char input = Console.ReadLine();
