@@ -7,7 +7,8 @@ namespace CSE210_03
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Director director = new Director();
+            director.startGame();
         }
     }
 }
