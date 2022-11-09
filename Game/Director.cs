@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -11,9 +12,18 @@ namespace Game
         private TerminalService _terminal = new TerminalService();
         private Dictionary _dictionary = new Dictionary();
 
+        private List<char> _displayWord = new List<char>();
+
+        private List<char> _guesses = new List<char>();
+
         // Constructor
         public Director()
-        {}
+        {
+            foreach (char letter in _dictionary.getWord())
+            {
+                _displayWord.Add('_');
+            }
+        }
 
         // Methods
         // Game loop
@@ -22,13 +32,21 @@ namespace Game
             do
             {
                 // _parachute.getParachute();
-                _terminal.ReadInput();
+                compareLetter(_terminal.ReadInput());
 
             } while (_isPlaying);
         }
 
         private bool compareLetter(char letter)
         {
+            foreach (char character in _guesses)
+            {
+                if (letter == character)
+                {
+                    
+                }
+            }
+
             bool correctGuess = false;
             foreach (char character in _dictionary.getWord())
             {
@@ -38,6 +56,11 @@ namespace Game
                 }
             }
             return correctGuess;
+        }
+
+        private void outputDisplayedWord()
+        {
+
         }
     }
 }
