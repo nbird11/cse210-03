@@ -1,6 +1,5 @@
 using System;
 
-
 namespace Game
 {
     /// Director keeps track of the game loop, and the guessed letters, updates the "___l_"
