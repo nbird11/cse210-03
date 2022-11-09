@@ -1,11 +1,47 @@
 using System;
-
+using System.Collections.Generic;
 
 namespace Game
 {
     /// TerminalService
-    public class TerminalService
+    /// Terminal service is here to provide functions for the rest of the code to interact with the terminal
+    /// will include prints and receive inputs.
+    public class TerminalService 
     {
+        /// constuctor to build the object
+        public TerminalService()
+        {
+
+
+        }
+        /// attributes
+
+
+        /// method
+            public string ReadInput(string prompt = "Input guess")
+            {
+                Console.Write(prompt);
+                string input = Console.ReadLine();
+                return input;
+            }
+
+
+            public void PrintString(string output)
+
+            {
+                Console.Writeline(output);
+
+            }
+
+            public void PrintList(List <string> outputs )
+            {
+                foreach (string item in outputs)
+                {
+                    PrintList(item);
+                }
+    
+            }
+
         
     }
 }
