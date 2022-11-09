@@ -37,7 +37,7 @@ namespace Game
                     correctGuess = true;
                 }
             }
-            return
+            return correctGuess;
         }
     }
 }
