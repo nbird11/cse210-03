@@ -29,7 +29,7 @@ namespace Game
             public void PrintString(string output)
 
             {
-                Console.Writeline(output);
+                Console.WriteLine(output);
 
             }
 
@@ -37,7 +37,7 @@ namespace Game
             {
                 foreach (string item in outputs)
                 {
-                    PrintList(item);
+                    PrintString(item);
                 }
     
             }
