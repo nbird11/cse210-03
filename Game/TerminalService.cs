@@ -21,7 +21,7 @@ namespace Game
             public string ReadInput(string prompt = "Input guess")
             {
                 Console.Write(prompt);
-                string input = Console.ReadLine();
+                char input = Console.ReadLine();
                 return input;
             }
 
