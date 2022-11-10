@@ -6,9 +6,9 @@ namespace Game
     /// Parachute
     public class Parachute
     {
-        List<string> jumper = new List<string>();
+        private List<string> jumper = new List<string>();
         
-        int listRange;
+        public int listRange;
 
 
         public Parachute()
