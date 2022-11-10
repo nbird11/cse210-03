@@ -75,6 +75,7 @@ namespace Game
                 // Win condition.
                 if (!_hint.Contains('_'))
                 {
+                    displayHint();
                     _isPlaying = false;
                     Console.WriteLine("congratz i guess\n");
                 }
