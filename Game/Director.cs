@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Game
 {
-    /// Director keeps track of the game loop, and the guessed letters, updates the "___l_"
+    /// Director keeps track of the game loop, and the guessed letters, updates the hint
     public class Director
     {
         // Attributes
@@ -12,7 +12,7 @@ namespace Game
         private TerminalService _terminal = new TerminalService();
         private Dictionary _dictionary = new Dictionary();
         private string _secretWord;
-        private List<char> _displayWord = new List<char>();
+        private List<char> _hint = new List<char>();
         private List<char> _guesses = new List<char>();
         private char _guess;
 
@@ -22,7 +22,7 @@ namespace Game
             _secretWord = _dictionary.getWord();
             foreach (char letter in _secretWord)
             {
-                _displayWord.Add('_');
+                _hint.Add('_');
             }
         }
 
@@ -32,34 +32,48 @@ namespace Game
         {
             do
             {
+                // PUT hint
+                displayHint();
+
+                // Draw jumper guy
                 _parachute.drawJumper();
+
+                // GET input _guess
                 _guess = _terminal.ReadInput();
+
                 // Check if the letter was already guessed
                 while (_guesses.Contains(_guess))
                 {
-                    _terminal.PrintString("You have already guessed that letter. Please try a different one.");
+                    _terminal.PrintString("You have already guessed that letter. Please try a different one.\n");
                     _guess = _terminal.ReadInput();
                 }
+
                 _guesses.Add(_guess);
+
+                // Compare _guess with _secretWord
                 if (!compareLetter(_guess))
                 {
+                    // _guess doesn't match
                     _parachute.wrongGuess();
                 }
                 else
                 {
-                    updateDisplayedWord();
+                    // _guess matches
+                    updateHint();
                 }
-                outputDisplayedWord();
 
+                // Lose condition.
                 if (_parachute.listRange < 3)
                 {
                     _isPlaying = false;
                     _parachute.drawJumper();
-                    Console.WriteLine("YOU LOSE SIR\n");
+                    Console.WriteLine("YOU LOSE SIR!");
+                    Console.WriteLine($"Secret word was {_secretWord}.\n");
                     break;
                 }
 
-                if (!_displayWord.Contains('_'))
+                // Win condition.
+                if (!_hint.Contains('_'))
                 {
                     _isPlaying = false;
                     Console.WriteLine("congratz i guess\n");
@@ -79,7 +93,8 @@ namespace Game
             return correctGuess;
         }
 
-        private void updateDisplayedWord()
+        // Makes sure the '_'s in _hint are replaced with the guesses if they match _secretWord
+        private void updateHint()
         {
             for (int iWord=0; iWord<_secretWord.Length; iWord++)
             {
@@ -87,15 +102,17 @@ namespace Game
                 {
                     if (_secretWord[iWord] == _guesses[iGuesses])
                     {
-                        _displayWord[iWord] = _secretWord[iWord];
+                        _hint[iWord] = _secretWord[iWord];
                     }
                 }
             }
         }
 
-        private void outputDisplayedWord()
+        // Prints the _hint to the screen char by char.
+        private void displayHint()
         {
-            foreach (char character in _displayWord)
+            Console.WriteLine();
+            foreach (char character in _hint)
             {
                 Console.Write($" {character}");
             }
