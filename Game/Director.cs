@@ -11,15 +11,16 @@ namespace Game
         private Parachute _parachute = new Parachute();
         private TerminalService _terminal = new TerminalService();
         private Dictionary _dictionary = new Dictionary();
-
+        private string _secretWord;
         private List<char> _displayWord = new List<char>();
-
         private List<char> _guesses = new List<char>();
+        private char _guess;
 
         // Constructor
         public Director()
         {
-            foreach (char letter in _dictionary.getWord())
+            _secretWord = _dictionary.getWord();
+            foreach (char letter in _secretWord)
             {
                 _displayWord.Add('_');
             }
@@ -31,36 +32,74 @@ namespace Game
         {
             do
             {
-                // _parachute.getParachute();
-                compareLetter(_terminal.ReadInput());
+                _parachute.drawJumper();
+                _guess = _terminal.ReadInput();
+                // Check if the letter was already guessed
+                while (_guesses.Contains(_guess))
+                {
+                    _terminal.PrintString("You have already guessed that letter. Please try a different one.");
+                    _guess = _terminal.ReadInput();
+                }
+                _guesses.Add(_guess);
+                if (!compareLetter(_guess))
+                {
+                    _parachute.wrongGuess();
+                }
+                else
+                {
+                    updateDisplayedWord();
+                }
+                outputDisplayedWord();
+
+                if (_parachute.listRange < 3)
+                {
+                    _isPlaying = false;
+                    _parachute.drawJumper();
+                    Console.WriteLine("YOU LOSE SIR\n");
+                    break;
+                }
+
+                if (!_displayWord.Contains('_'))
+                {
+                    _isPlaying = false;
+                    Console.WriteLine("congratz i guess\n");
+                }
 
             } while (_isPlaying);
         }
 
+        // Compares the guess letter with the secret word
         private bool compareLetter(char letter)
         {
-            foreach (char character in _guesses)
-            {
-                if (letter == character)
-                {
-                    
-                }
-            }
-
             bool correctGuess = false;
-            foreach (char character in _dictionary.getWord())
+            if (_secretWord.Contains(letter))
             {
-                if (letter == character)
-                {
-                    correctGuess = true;
-                }
+                correctGuess = true;
             }
             return correctGuess;
         }
 
+        private void updateDisplayedWord()
+        {
+            for (int iWord=0; iWord<_secretWord.Length; iWord++)
+            {
+                for (int iGuesses=0; iGuesses<_guesses.Count; iGuesses++)
+                {
+                    if (_secretWord[iWord] == _guesses[iGuesses])
+                    {
+                        _displayWord[iWord] = _secretWord[iWord];
+                    }
+                }
+            }
+        }
+
         private void outputDisplayedWord()
         {
-
+            foreach (char character in _displayWord)
+            {
+                Console.Write($" {character}");
+            }
+            Console.WriteLine("\n");
         }
     }
 }
