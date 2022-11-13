@@ -8,8 +8,18 @@ namespace Game
     {
         private List<string> jumper = new List<string>();
         
-        public int listRange;
+        private int _listRange;
 
+        public int listRange {
+            get
+            {
+                return _listRange;
+            }
+            set
+            {
+                _listRange = value;
+            }
+        }
 
         public Parachute()
         {
@@ -21,17 +31,17 @@ namespace Game
             jumper.Add(" /___\\ ");
             jumper.Add("  ___  ");
 
-            listRange = jumper.Count;
+            _listRange = jumper.Count;
         }
 
         public void wrongGuess()
         {
-            listRange -= 1;
+            _listRange -= 1;
         }
 
         public void drawJumper()
         {
-            if (listRange > 2)
+            if (_listRange > 2)
             {
                 for (int i = listRange - 1; i > -1; i--)
                 {
@@ -41,7 +51,7 @@ namespace Game
             else
             {
                 Console.WriteLine("   x   ");
-                for (int i = listRange - 1; i > -1; i--)
+                for (int i = _listRange - 1; i > -1; i--)
                 {
                     Console.WriteLine(jumper[i]);
                 }
